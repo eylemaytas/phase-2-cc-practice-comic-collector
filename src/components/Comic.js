@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Comic({comic}) {
+function Comic({comic, deleteComic}) {
 
 const [toggle, setToggle] = useState(false)
 
@@ -17,10 +17,12 @@ if(toggle === false) {
 } else {
 
   return (
-  <div onClick= {handleToggle} className="comic-item">
-      <h3>{comic.title}</h3>
+  <div className="comic-item">
+      <h3 onClick= {handleToggle}>{comic.title}</h3>
       <h4>{comic.issue}</h4>
-      <button >Remove</button>
+      <button onClick={() => {
+        deleteComic(comic.id)
+      }}>Remove</button>
     </div>
 
    ) }

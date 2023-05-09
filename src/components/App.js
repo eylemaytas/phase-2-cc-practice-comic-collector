@@ -14,6 +14,17 @@ useEffect(() => {
 
 const [formData, setFormData] = useState({})
 
+function deleteComic(id){
+fetch(`http://localhost:8004/comics/${id}`, {
+  method: "DELETE"
+})
+.then(() => {
+  setComics(comics.filter(comic => {
+    return comic.id !== id
+  }))
+})
+}
+
 function updateFormData(event) {
   setFormData({...formData, [event.target.name]: event.target.value})
   console.log(formData)
@@ -46,7 +57,7 @@ body: JSON.stringify(formData)
       <div className="grid with-sidebar">
 
         <div className="flex-container">
-          <ComicsContainer comics={comics}/>
+          <ComicsContainer comics={comics} deleteComic={deleteComic}/>
         </div>
 
         <div className="sidebar">
