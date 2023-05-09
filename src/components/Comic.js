@@ -1,19 +1,33 @@
-function Comic() {
+import { useState } from "react"
 
-  return (
-    <div className="comic-item">
+function Comic({comic}) {
 
-      {/* The image should render if the details aren't displayed */}
-      <img src={"#"} alt={"Comic Issue Image"} />
+const [toggle, setToggle] = useState(false)
 
-      {/* The details should render if the image isn't displayed */}
-      <h3>{"Title"}</h3>
-      <h4>{"Issue No."}</h4>
-      <button>Remove</button>
-
-    </div>
-  )
-
+function handleToggle(){
+  setToggle(!toggle)
 }
 
+if(toggle === false) {
+  return (
+    <div onClick= {handleToggle} className="comic-item">
+    <img src={comic.image_url} alt={"Comic Issue Image"} />
+    </div>
+    )
+} else {
+
+  return (
+  <div onClick= {handleToggle} className="comic-item">
+      <h3>{comic.title}</h3>
+      <h4>{comic.issue}</h4>
+      <button >Remove</button>
+    </div>
+
+   ) }
+  }
+
 export default Comic
+  
+
+
+
